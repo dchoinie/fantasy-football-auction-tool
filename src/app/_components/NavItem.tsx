@@ -1,3 +1,4 @@
+import { UserPlus } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { Button } from "~/components/ui/button";
@@ -8,9 +9,17 @@ export interface NavItemType {
 }
 
 const NavItem = ({ label, link }: NavItemType) => {
+  const isDraftItem = label === "Draft";
   return (
-    <Button variant="link" asChild>
-      <Link href={link}>{label}</Link>
+    <Button
+      variant={isDraftItem ? "default" : "link"}
+      asChild
+      className={isDraftItem ? "bg-green-600" : ""}
+    >
+      <Link href={link}>
+        {label}
+        {isDraftItem ? <UserPlus size={20} className="ml-2" /> : null}
+      </Link>
     </Button>
   );
 };

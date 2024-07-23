@@ -9,4 +9,5 @@ export default {
     url: env.POSTGRES_URL,
   },
   tablesFilter: ["fantasy-football-auction-tool_*"],
+  out: "./drizzle",
 } satisfies Config;

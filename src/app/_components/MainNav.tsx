@@ -8,16 +8,20 @@ const navItems: NavItemType[] = [
     link: "/dashboard",
   },
   {
+    label: "My Team",
+    link: "/dashboard/team",
+  },
+  {
     label: "Rosters",
     link: "/dashboard/rosters",
   },
   {
-    label: "Draft",
-    link: "/dashboard/draft",
-  },
-  {
     label: "Members",
     link: "/dashboard/members",
+  },
+  {
+    label: "Draft",
+    link: "/dashboard/draft",
   },
 ];
 
@@ -33,7 +37,7 @@ const MainNav = () => {
           ))}
         </div>
         <div className="self-center">
-          <UserButton userProfileMode="modal" />
+          <UserButton userProfileMode="modal" showName />
         </div>
       </div>
     </nav>
