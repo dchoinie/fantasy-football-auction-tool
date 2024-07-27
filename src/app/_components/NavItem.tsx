@@ -17,8 +17,8 @@ const NavItem = ({ label, link }: NavItemType) => {
       className={isDraftItem ? "bg-green-600" : ""}
     >
       <Link href={link}>
+        {isDraftItem ? <UserPlus size={20} className="mr-2" /> : null}
         {label}
-        {isDraftItem ? <UserPlus size={20} className="ml-2" /> : null}
       </Link>
     </Button>
   );

@@ -19,6 +19,7 @@ import {
 import { Button } from "~/components/ui/button";
 import Link from "next/link";
 import { FETCH_STATUS } from "~/enums/common";
+import { UserPlus } from "lucide-react";
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
@@ -26,8 +27,10 @@ const Dashboard = () => {
   const profileStatus = useAppSelector(selectProfileStatus);
 
   useEffect(() => {
-    dispatch(fetchProfile()).catch((error) => console.log(error));
-  }, [dispatch]);
+    if (!profile.users.id) {
+      dispatch(fetchProfile()).catch((error) => console.log(error));
+    }
+  }, [dispatch, profile.users.id]);
 
   const teamExists = profile.teams.id;
 
@@ -49,7 +52,7 @@ const Dashboard = () => {
         <>
           <div className="flex flex-col">
             <h1 className="mb-3 text-4xl font-bold text-slate-800">
-              Hello {`${profile.users.firstName} ${profile.users.lastName}`} !
+              Hello, {`${profile.users.firstName} ${profile.users.lastName}`}!
             </h1>
             <p className="text-slate-700">
               Welcome to the {new Date().getFullYear()} True Fliers Auction
@@ -68,13 +71,6 @@ const Dashboard = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>
-                    {teamExists
-                      ? "Manage your team name, mascot, ect..."
-                      : "Create your team name, mascot, ect..."}
-                  </p>
-                </CardContent>
-                <CardFooter>
                   <Button asChild>
                     <Link
                       href={
@@ -86,7 +82,35 @@ const Dashboard = () => {
                       {`${teamExists ? "Manage" : "Create"} Team`}
                     </Link>
                   </Button>
-                </CardFooter>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-green-600">
+                <CardHeader>
+                  <CardTitle className="text-slate-100">Join Draft</CardTitle>
+                  <CardDescription className="text-slate-200">
+                    Click below to join the live auction draft
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button asChild variant="secondary">
+                    <Link href="/dashboard/draft">
+                      <UserPlus size={24} className="mr-2" />
+                      Join Draft
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>View Rosters</CardTitle>
+                  <CardDescription>View all team rosters</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button asChild>
+                    <Link href="/dashboard/rosters">View Rosters</Link>
+                  </Button>
+                </CardContent>
               </Card>
             </div>
           </div>

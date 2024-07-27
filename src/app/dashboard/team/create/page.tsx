@@ -72,7 +72,7 @@ const Page = (): JSX.Element => {
             name="teamMascot"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Team Name</FormLabel>
+                <FormLabel>Team Mascot</FormLabel>
                 <FormControl>
                   <Input placeholder="Awful Team" {...field} />
                 </FormControl>

@@ -3,7 +3,7 @@ import "~/styles/globals.css";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkLoaded, ClerkLoading, ClerkProvider } from "@clerk/nextjs";
 import StoreProvider from "./StoreProvider";
 
 export const metadata: Metadata = {
@@ -19,7 +19,10 @@ export default function RootLayout({
     <StoreProvider>
       <ClerkProvider>
         <html lang="en" className={`${GeistSans.variable}`}>
-          <body>{children}</body>
+          <body>
+            <ClerkLoading>Loading...</ClerkLoading>
+            <ClerkLoaded>{children}</ClerkLoaded>
+          </body>
         </html>
       </ClerkProvider>
     </StoreProvider>
